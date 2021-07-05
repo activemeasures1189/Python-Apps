@@ -14,6 +14,7 @@ class SignupScreen (Screen):
         file = open('users.json')
         users = json.load(file)
         print(users)
+        print('hello git')
 
 class RootWidget (ScreenManager):
     pass
