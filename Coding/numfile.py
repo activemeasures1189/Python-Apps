@@ -16,4 +16,5 @@ X=np.random.randint(1,36,size=7)
 Tuple_1=tuple(X)
 print(Tuple_1)
 # print(type(Tuple_1))
+print('Test git ignore function again after adding :')
 
