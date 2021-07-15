@@ -1,8 +1,14 @@
+# 
+
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 import json
 from datetime import datetime
+import random
+from hoverable import HoverBehavior
+from kivy.uix.image import Image
+from kivy.uix.behaviors import ButtonBehavior
 
 Builder.load_file('design.kv')
 
@@ -34,8 +40,27 @@ class LoginScreenSuccess (Screen):
     def logout(self):
         self.manager.transition.direction = "right"
         self.manager.current = "login_screen"
+    def get_quote(self, mood):
+        self.ids.mood.text = mood
+        
+        if mood.lower() == 'sad':
+            data = open('sad.txt', 'r', encoding='utf8')
+            file = data.readlines()
+            self.ids.quote.text = random.choice(file)
+        elif mood.lower() == 'happy':
+            data = open('happy.txt', 'r', encoding='utf8')
+            file = data.readlines()
+            self.ids.quote.text = random.choice(file)
+        elif mood.lower() == 'unloved':
+            data = open('unloved.txt', 'r', encoding='utf8')
+            file = data.readlines()
+            self.ids.quote.text = random.choice(file)
+        else:
+            self.ids.quote.text = 'Invalid Input. Try words such as Happy, Sad, Unloved..'   
+class ImageButton(ButtonBehavior, HoverBehavior, Image):
+    pass
 
-
+ 
 
     
 
